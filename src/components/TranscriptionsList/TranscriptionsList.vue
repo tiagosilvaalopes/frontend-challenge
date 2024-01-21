@@ -6,10 +6,9 @@ import AddRowIcon from '@/assets/icons/IconAddRow.vue'
 
 const transcriptionsStore = useTranscriptionsStore()
 const { transcriptionsList } = storeToRefs(transcriptionsStore)
-// const { addTranscription } = transcriptionsStore
 
 const addTranscription = () => {
-  transcriptionsList.value.push({
+  transcriptionsStore.addTranscription({
     id: `ID${Math.random().toString(36).slice(2)}`,
     voice: 'Click to edit me!',
     text: 'Click to edit me!'
@@ -20,7 +19,7 @@ const addTranscription = () => {
 <template>
   <div class="container">
     <div class="transcription-list">
-      <div class="no-transcription-text" v-if="transcriptionsList.length === 0">No transcriptions to show :(</div>
+      <p class="no-transcription-text" v-if="transcriptionsList.length === 0">No transcriptions to show :(</p>
       <template v-else v-for="transcription in transcriptionsList" :key="transcription.id">
         <TranscriptionItem :id="transcription.id" :voice="transcription.voice" :text="transcription.text" />
       </template>
