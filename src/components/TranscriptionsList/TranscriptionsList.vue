@@ -53,5 +53,13 @@ const addTranscription = () => {
 
 .transcription-list-add-btn {
   margin-top: 30px;
+
+  @media screen and (width <= 400px) {
+    position: absolute;
+    transform: scale(1.5);
+    bottom: 20px;
+    right: 20px;
+    position: fixed;
+  }
 }
 </style>

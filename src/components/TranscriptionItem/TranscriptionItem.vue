@@ -132,6 +132,7 @@ input[type='checkbox'] {
   color: #778195;
   margin-bottom: 10px;
   cursor: pointer;
+  padding: 2px 0;
 }
 
 .transcription-list-item--content:focus {
@@ -145,6 +146,11 @@ input[type='checkbox'] {
   pointer-events: none;
   opacity: 0;
   transition: 0.2s all ease-in;
+
+  @media screen and (width <= 400px) {
+    opacity: 100%;
+    pointer-events: auto;
+  }
 }
 
 .transcription-list-item:hover .transcription-list-item--delete-btn,
