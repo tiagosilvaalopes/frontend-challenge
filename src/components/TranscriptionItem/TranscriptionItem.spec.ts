@@ -37,7 +37,7 @@ describe('TranscriptionItem component', () => {
 
     const deleteButton = wrapper.find('button')
     expect(deleteButton.exists()).toBeTruthy()
-    expect(deleteButton.classes()).toContain('transcription-list-item--delete-btn')
+    expect(deleteButton.classes()).toContain('transcription-list-item__delete-btn')
   })
 
   it('calls the deleteTranscription method when the delete button is clicked', async () => {

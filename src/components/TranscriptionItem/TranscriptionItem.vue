@@ -50,11 +50,11 @@ watch(text, () => {
 <template>
   <div class="transcription-list-item">
     <input type="checkbox" />
-    <PersonIcon :class="['person-icon', { 'person-two': isVoicePersonTwo }]" />
-    <div class="transcription-list-item-content-wrapper">
+    <PersonIcon :class="['person-icon', { 'person-icon--purple': isVoicePersonTwo }]" />
+    <div>
       <div
         ref="titleElement"
-        class="transcription-list-item--title"
+        class="transcription-list-item__title"
         contenteditable
         spellcheck="false"
         :data-testid="voiceDataTestID"
@@ -66,7 +66,7 @@ watch(text, () => {
 
       <div
         ref="textElement"
-        class="transcription-list-item--content"
+        class="transcription-list-item__content"
         contenteditable
         spellcheck="false"
         :data-testid="textDataTestID"
@@ -76,7 +76,7 @@ watch(text, () => {
         {{ text }}
       </div>
     </div>
-    <button class="transcription-list-item--delete-btn" @click="transcriptionsStore.deleteTranscription(props.id)">
+    <button class="transcription-list-item__delete-btn" @click="transcriptionsStore.deleteTranscription(props.id)">
       <DeleteIcon />
     </button>
   </div>
@@ -109,7 +109,7 @@ input[type='checkbox'] {
   margin-top: -4px;
 }
 
-.person-two:deep(rect) {
+.person-icon--purple:deep(rect) {
   fill: #859eff;
 }
 
@@ -117,7 +117,7 @@ input[type='checkbox'] {
   border-bottom: none;
 }
 
-.transcription-list-item--title {
+.transcription-list-item__title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -126,11 +126,11 @@ input[type='checkbox'] {
   cursor: pointer;
 }
 
-.transcription-list-item--title:focus {
+.transcription-list-item__title:focus {
   cursor: text;
 }
 
-.transcription-list-item--content {
+.transcription-list-item__content {
   font-family: 'Open Sans', sans-serif;
   font-size: 1rem;
   color: #778195;
@@ -139,11 +139,11 @@ input[type='checkbox'] {
   padding: 2px 0;
 }
 
-.transcription-list-item--content:focus {
+.transcription-list-item__content:focus {
   cursor: text;
 }
 
-.transcription-list-item--delete-btn {
+.transcription-list-item__delete-btn {
   margin-left: auto;
   margin-top: -2px;
   cursor: pointer;
@@ -157,8 +157,8 @@ input[type='checkbox'] {
   }
 }
 
-.transcription-list-item:hover .transcription-list-item--delete-btn,
-.transcription-list-item--delete-btn:focus {
+.transcription-list-item:hover .transcription-list-item__delete-btn,
+.transcription-list-item__delete-btn:focus {
   pointer-events: auto;
   opacity: 100%;
 }

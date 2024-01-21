@@ -19,7 +19,7 @@ describe('TranscriptionItem component', () => {
 
     const addButton = wrapper.find('button')
     expect(addButton.exists()).toBeTruthy()
-    expect(addButton.classes()).toContain('transcription-list-add-btn')
+    expect(addButton.classes()).toContain('transcription-list__add-btn')
   })
 
   it('adds a new transcription when the add button is clicked', async () => {

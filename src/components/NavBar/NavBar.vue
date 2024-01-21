@@ -9,7 +9,7 @@ const { fetchTranscriptions, uploadTranscriptions } = transcriptionsStore
 
 <template>
   <header class="navbar">
-    <div class="navbar-wrapper">
+    <div class="wrapper">
       <h1 class="title">Transcriptions</h1>
       <div>
         <button class="btn" @click="uploadTranscriptions"><UploadIcon /></button>
@@ -29,7 +29,7 @@ const { fetchTranscriptions, uploadTranscriptions } = transcriptionsStore
   margin-bottom: 20px;
 }
 
-.navbar-wrapper {
+.wrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -24,7 +24,7 @@ const addTranscription = () => {
         <TranscriptionItem :id="transcription.id" :voice="transcription.voice" :text="transcription.text" />
       </template>
 
-      <button class="transcription-list-add-btn" @click="addTranscription"><AddRowIcon /></button>
+      <button class="transcription-list__add-btn" @click="addTranscription"><AddRowIcon /></button>
     </div>
   </div>
 </template>
@@ -50,7 +50,7 @@ const addTranscription = () => {
   text-align: center;
 }
 
-.transcription-list-add-btn {
+.transcription-list__add-btn {
   margin-top: 30px;
 
   @media screen and (width <= 400px) {
