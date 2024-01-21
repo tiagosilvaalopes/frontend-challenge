@@ -41,7 +41,7 @@ const { fetchTranscriptions, uploadTranscriptions } = transcriptionsStore
 
 .title {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 1.125rem;
   color: #414c5e;
 }
