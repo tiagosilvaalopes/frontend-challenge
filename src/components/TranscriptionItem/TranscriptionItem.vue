@@ -1,29 +1,80 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { useTranscriptionsStore, type Transcription } from '@/stores/transcriptions'
 import DeleteIcon from '@/assets/icons/IconDelete.vue'
 import PersonIcon from '@/assets/icons/IconPerson.vue'
 
-const transcriptionsStore = useTranscriptionsStore()
-const { deleteTranscription } = transcriptionsStore
-
 const props = defineProps<Transcription>()
 
-const isTitleBeingEdited = ref(false)
-const isTextBeingEdited = ref(false)
+const transcriptionsStore = useTranscriptionsStore()
 
-const isVoicePersonTwo = computed(() => props.voice === 'Voice 2')
+const titleElement = ref<HTMLInputElement | null>(null)
+const textElement = ref<HTMLInputElement | null>(null)
+
+const voice = ref(props.voice)
+const text = ref(props.text)
+
+const updateVoice = (event: Event) => {
+  ;(event.target as HTMLInputElement).blur()
+  voice.value = titleElement.value?.innerText.trim() ?? ''
+}
+
+const updateText = (event: Event) => {
+  ;(event.target as HTMLInputElement).blur()
+  text.value = textElement.value?.innerText.trim() ?? ''
+}
+
+const isVoicePersonTwo = computed(() => voice.value === 'Voice 2')
+
+watch(voice, () => {
+  console.log(`Voice with ID: ${props.id} has been updated to ${voice.value}`)
+  transcriptionsStore.updateTranscription({
+    id: props.id,
+    voice: voice.value,
+    text: text.value
+  })
+})
+
+watch(text, () => {
+  console.log(`Text with ID: ${props.id} has been updated to ${text.value}`)
+  transcriptionsStore.updateTranscription({
+    id: props.id,
+    voice: voice.value,
+    text: text.value
+  })
+})
 </script>
 
 <template>
   <div class="transcription-list-item">
-    <input type="checkbox" class="checkbox" />
+    <input type="checkbox" />
     <PersonIcon :class="['person-icon', { 'person-two': isVoicePersonTwo }]" />
     <div class="transcription-list-item-content-wrapper">
-      <div v-if="!isTitleBeingEdited" class="transcription-list-item--title">{{ voice }}</div>
-      <div v-if="!isTextBeingEdited" class="transcription-list-item--content">{{ text }}</div>
+      <div
+        ref="titleElement"
+        class="transcription-list-item--title"
+        contenteditable
+        spellcheck="false"
+        @blur="updateVoice"
+        @keydown.enter="updateVoice"
+      >
+        {{ voice }}
+      </div>
+
+      <div
+        ref="textElement"
+        class="transcription-list-item--content"
+        contenteditable
+        spellcheck="false"
+        @blur="updateText"
+        @keydown.enter="updateText"
+      >
+        {{ text }}
+      </div>
     </div>
-    <button class="transcription-list-item--delete-btn" @click="deleteTranscription(props.id)"><DeleteIcon /></button>
+    <button class="transcription-list-item--delete-btn" @click="transcriptionsStore.deleteTranscription(props.id)">
+      <DeleteIcon />
+    </button>
   </div>
 </template>
 
@@ -42,6 +93,7 @@ input[type='checkbox'] {
   accent-color: #859eff;
   outline: 1px auto #859eff;
   height: 16px;
+  width: 16px;
   min-width: 16px;
   cursor: pointer;
 }
@@ -67,6 +119,11 @@ input[type='checkbox'] {
   font-size: 1rem;
   color: #566074;
   margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.transcription-list-item--title:focus {
+  cursor: text;
 }
 
 .transcription-list-item--content {
@@ -74,6 +131,11 @@ input[type='checkbox'] {
   font-size: 1rem;
   color: #778195;
   margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.transcription-list-item--content:focus {
+  cursor: text;
 }
 
 .transcription-list-item--delete-btn {

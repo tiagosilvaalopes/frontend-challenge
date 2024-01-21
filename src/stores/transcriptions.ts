@@ -35,7 +35,7 @@ export const useTranscriptionsStore = defineStore('transcriptions', () => {
     transcriptionsList.value = transcriptionsList.value.filter((transcription) => transcription.id !== transcriptionId)
   }
 
-  function editTranscription(updatedTranscription: Transcription) {
+  function updateTranscription(updatedTranscription: Transcription) {
     const index = transcriptionsList.value.findIndex((transcription) => transcription.id === updatedTranscription.id)
     if (index !== -1) {
       transcriptionsList.value[index] = updatedTranscription
@@ -48,6 +48,6 @@ export const useTranscriptionsStore = defineStore('transcriptions', () => {
     deleteTranscription,
     fetchTranscriptions,
     uploadTranscriptions,
-    editTranscription
+    updateTranscription
   }
 })

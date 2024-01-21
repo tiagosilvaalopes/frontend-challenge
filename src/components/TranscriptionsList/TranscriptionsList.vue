@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed } from 'vue'
 import { storeToRefs } from 'pinia'
 import { useTranscriptionsStore } from '@/stores/transcriptions'
 import TranscriptionItem from '@/components/TranscriptionItem/TranscriptionItem.vue'
@@ -9,13 +8,11 @@ const transcriptionsStore = useTranscriptionsStore()
 const { transcriptionsList } = storeToRefs(transcriptionsStore)
 // const { addTranscription } = transcriptionsStore
 
-const transcriptions = computed(() => transcriptionsList.value)
-
 const addTranscription = () => {
-  transcriptions.value.push({
+  transcriptionsList.value.push({
     id: `ID${Math.random().toString(36).slice(2)}`,
-    voice: '',
-    text: ''
+    voice: 'Click to edit me!',
+    text: 'Click to edit me!'
   })
 }
 </script>
@@ -23,10 +20,11 @@ const addTranscription = () => {
 <template>
   <div class="container">
     <div class="transcription-list">
-      <div class="no-transcription-text" v-if="transcriptions.length === 0">No transcriptions to show :(</div>
-      <template v-else v-for="transcription in transcriptions" :key="transcription.id">
+      <div class="no-transcription-text" v-if="transcriptionsList.length === 0">No transcriptions to show :(</div>
+      <template v-else v-for="transcription in transcriptionsList" :key="transcription.id">
         <TranscriptionItem :id="transcription.id" :voice="transcription.voice" :text="transcription.text" />
       </template>
+
       <button class="transcription-list-add-btn" @click="addTranscription"><AddRowIcon /></button>
     </div>
   </div>
