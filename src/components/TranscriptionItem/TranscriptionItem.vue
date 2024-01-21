@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { useTranscriptionsStore, type Transcription } from '@/stores/transcriptions'
+import { useTranscriptionsStore } from '@/stores/transcriptions'
+import { type Transcription } from '@/stores/transcriptions.shared'
+import { voiceDataTestID, textDataTestID } from './TranscriptionItem.shared'
 import DeleteIcon from '@/assets/icons/IconDelete.vue'
 import PersonIcon from '@/assets/icons/IconPerson.vue'
 
@@ -8,8 +10,8 @@ const props = defineProps<Transcription>()
 
 const transcriptionsStore = useTranscriptionsStore()
 
-const titleElement = ref<HTMLInputElement | null>(null)
-const textElement = ref<HTMLInputElement | null>(null)
+const titleElement = ref<HTMLDivElement | null>(null)
+const textElement = ref<HTMLDivElement | null>(null)
 
 const voice = ref(props.voice)
 const text = ref(props.text)
@@ -55,6 +57,7 @@ watch(text, () => {
         class="transcription-list-item--title"
         contenteditable
         spellcheck="false"
+        :data-testid="voiceDataTestID"
         @blur="updateVoice"
         @keydown.enter="updateVoice"
       >
@@ -66,6 +69,7 @@ watch(text, () => {
         class="transcription-list-item--content"
         contenteditable
         spellcheck="false"
+        :data-testid="textDataTestID"
         @blur="updateText"
         @keydown.enter="updateText"
       >
