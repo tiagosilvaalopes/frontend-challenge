@@ -4,7 +4,7 @@ import { mount } from '@vue/test-utils'
 import { voiceDataTestID, textDataTestID } from './TranscriptionItem.shared'
 
 import TranscriptionItem from './TranscriptionItem.vue'
-import { useTranscriptionsStore } from '@/stores/transcriptions'
+import { useTranscriptionsStore } from '@/stores/transcriptionStore/transcriptions'
 
 describe('TranscriptionItem component', () => {
   beforeEach(() => {

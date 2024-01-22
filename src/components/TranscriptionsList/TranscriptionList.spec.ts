@@ -3,7 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { mount } from '@vue/test-utils'
 
 import TranscriptionsList from './TranscriptionsList.vue'
-import { useTranscriptionsStore } from '@/stores/transcriptions'
+import { useTranscriptionsStore } from '@/stores/transcriptionStore/transcriptions'
 
 describe('TranscriptionItem component', () => {
   beforeEach(() => {

@@ -1,13 +1,12 @@
 // stores/counter.spec.ts
 import { setActivePinia, createPinia } from 'pinia'
-import { beforeEach, describe, it, expect, vi } from 'vitest'
+import { beforeEach, describe, it, expect } from 'vitest'
 import { useTranscriptionsStore } from './transcriptions'
 import { transcriptionMock, transcriptionIdMock } from './transcriptions.mocks'
 
 describe('Transcriptions Store', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
-    vi.resetAllMocks()
   })
 
   it('should add a transcription', () => {

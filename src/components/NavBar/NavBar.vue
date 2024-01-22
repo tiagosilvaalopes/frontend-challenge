@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import FetchDataIcon from '@/assets/icons/IconFetchData.vue'
 import UploadIcon from '@/assets/icons/IconUpload.vue'
-import { useTranscriptionsStore } from '@/stores/transcriptions'
+import { useTranscriptionsStore } from '@/stores/transcriptionStore/transcriptions'
 
 const transcriptionsStore = useTranscriptionsStore()
 const { fetchTranscriptions, uploadTranscriptions } = transcriptionsStore
@@ -27,6 +27,7 @@ const { fetchTranscriptions, uploadTranscriptions } = transcriptionsStore
   border-bottom: 2px solid #c0c5cf;
   background-color: white;
   margin-bottom: 20px;
+  padding: 0 20px;
 }
 
 .wrapper {

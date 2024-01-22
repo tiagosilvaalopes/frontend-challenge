@@ -3,7 +3,7 @@ import { createPinia, setActivePinia } from 'pinia'
 import { mount } from '@vue/test-utils'
 
 import NavBar from './NavBar.vue'
-import { useTranscriptionsStore } from '@/stores/transcriptions'
+import { useTranscriptionsStore } from '@/stores/transcriptionStore/transcriptions'
 
 describe('NavBar component', () => {
   beforeEach(() => {

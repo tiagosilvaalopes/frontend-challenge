@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { storeToRefs } from 'pinia'
-import { useTranscriptionsStore } from '@/stores/transcriptions'
+import { useTranscriptionsStore } from '@/stores/transcriptionStore/transcriptions'
 import TranscriptionItem from '@/components/TranscriptionItem/TranscriptionItem.vue'
 import AddRowIcon from '@/assets/icons/IconAddRow.vue'
+import ToastList from '@/components/Toast/ToastList.vue'
+import { getRandomID } from '@/helpers/generateRandomID'
 
 const transcriptionsStore = useTranscriptionsStore()
 const { transcriptionsList } = storeToRefs(transcriptionsStore)
 
 const addTranscription = () => {
   transcriptionsStore.addTranscription({
-    id: `ID${Math.random().toString(36).slice(2)}`,
+    id: getRandomID(),
     voice: 'Click to edit me!',
     text: 'Click to edit me!'
   })
@@ -26,6 +28,8 @@ const addTranscription = () => {
 
       <button class="transcription-list__add-btn" @click="addTranscription"><AddRowIcon /></button>
     </div>
+
+    <ToastList />
   </div>
 </template>
 

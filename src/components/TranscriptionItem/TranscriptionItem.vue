@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue'
-import { useTranscriptionsStore } from '@/stores/transcriptions'
-import { type Transcription } from '@/stores/transcriptions.shared'
+import { useTranscriptionsStore } from '@/stores/transcriptionStore/transcriptions'
+import { type Transcription } from '@/stores/transcriptionStore/transcriptions.shared'
 import { voiceDataTestID, textDataTestID } from './TranscriptionItem.shared'
 import DeleteIcon from '@/assets/icons/IconDelete.vue'
 import PersonIcon from '@/assets/icons/IconPerson.vue'
